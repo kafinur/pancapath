@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PancaPath v7 - Peta Belajar Adaptif Pendidikan Pancasila kelas VIII berbasis asesmen awal dan Pembelajaran Mendalam." />
-  <title>PancaPath v7 | Peta Belajar Adaptif</title>
+  <meta name="description" content="PancaPath v9 - Peta Belajar Adaptif Pendidikan Pancasila kelas VIII berbasis asesmen awal dan Pembelajaran Mendalam." />
+  <title>PancaPath v9 | Peta Belajar Adaptif</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -17,17 +17,19 @@
         </span>
         <span>
           <strong>PancaPath</strong>
-          <small>Peta Belajar Adaptif • v7</small>
+          <small>Peta Belajar Adaptif • v9</small>
         </span>
       </a>
       <nav class="nav" id="mainNav">
         <a href="#beranda">Beranda</a>
         <a href="#tujuan">Tujuan</a>
+        <a href="#sumberBelajar">Sumber</a>
         <a href="#identitas">Identitas</a>
-        <a href="#asesmen">Asesmen Awal</a>
+        <a href="#asesmen">Asesmen</a>
         <a href="#jalur">Jalur</a>
-        <a href="#misiBersama">Misi Bersama</a>
-        <a href="#asesmenAkhir">Asesmen Akhir</a>
+        <a href="#pancaQuest">PancaQuest</a>
+        <a href="#misiBersama">Misi</a>
+        <a href="#asesmenAkhir">Akhir</a>
         <a href="#refleksi">Refleksi</a>
       </nav>
       <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
@@ -43,13 +45,15 @@
         <div class="progress-link"></div>
         <div class="progress-item" data-step="path"><span>3</span><small>Jalur</small></div>
         <div class="progress-link"></div>
-        <div class="progress-item" data-step="mission"><span>4</span><small>Misi</small></div>
+        <div class="progress-item" data-step="quest"><span>4</span><small>PancaQuest</small></div>
         <div class="progress-link"></div>
-        <div class="progress-item" data-step="final"><span>5</span><small>Asesmen Akhir</small></div>
+        <div class="progress-item" data-step="mission"><span>5</span><small>Misi</small></div>
         <div class="progress-link"></div>
-        <div class="progress-item" data-step="reflection"><span>6</span><small>Refleksi</small></div>
+        <div class="progress-item" data-step="final"><span>6</span><small>Asesmen Akhir</small></div>
         <div class="progress-link"></div>
-        <div class="progress-item" data-step="complete"><span>7</span><small>Selesai</small></div>
+        <div class="progress-item" data-step="reflection"><span>7</span><small>Refleksi</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="complete"><span>8</span><small>Selesai</small></div>
       </div>
     </div>
   </div>
@@ -99,9 +103,10 @@
           <span><b>01</b> Identitas</span>
           <span><b>02</b> Asesmen Awal</span>
           <span><b>03</b> Jalur Adaptif</span>
-          <span><b>04</b> Misi Bersama</span>
-          <span><b>05</b> Asesmen Akhir</span>
-          <span><b>06</b> Refleksi</span>
+          <span><b>04</b> PancaQuest</span>
+          <span><b>05</b> Misi Bersama</span>
+          <span><b>06</b> Asesmen Akhir</span>
+          <span><b>07</b> Refleksi</span>
         </div>
       </div>
     </section>
@@ -170,19 +175,99 @@
       </div>
     </section>
 
+
+    <section id="sumberBelajar" class="section resources-section">
+      <div class="container">
+        <div class="section-head center-head">
+          <span class="eyebrow">📚 Sumber Belajar PancaPath</span>
+          <h2>Pilih sumber yang paling membantumu memahami materi</h2>
+          <p>
+            Kamu tidak harus membuka semuanya sekaligus. Gunakan sumber ini sebagai bantuan sebelum
+            atau selama menjalani jalur belajar adaptif.
+          </p>
+        </div>
+
+        <div class="resource-grid">
+          <article class="resource-card resource-ppt">
+            <div class="resource-icon">📑</div>
+            <span class="resource-type">Materi / PPT</span>
+            <h3>Pancasila sebagai Kepribadian Bangsa</h3>
+            <p>Ringkasan materi kelas VIII: makna kepribadian bangsa, penerapan lima sila, dan tantangan globalisasi.</p>
+            <div class="resource-meta"><span>12 slide</span><span>Ringan</span></div>
+            <a class="btn primary wide" href="resources/materi-pancasila-kelas-viii.pptx" download>Unduh PPT</a>
+          </article>
+
+          <article class="resource-card resource-video">
+            <div class="resource-icon">🎬</div>
+            <span class="resource-type">Video Pembelajaran</span>
+            <h3>Bagaimana Pancasila Menjadi Kepribadian Bangsa?</h3>
+            <p>Penguatan audiovisual untuk membantu memahami penerapan nilai Pancasila dalam kehidupan remaja.</p>
+            <div class="resource-meta"><span>Video lokal</span><span>Preload: none</span></div>
+            <button class="btn primary wide" type="button" id="openVideoBtn">▶ Tonton Video</button>
+          </article>
+
+          <article class="resource-card resource-lkpd">
+            <div class="resource-icon">📝</div>
+            <span class="resource-type">LKPD Siswa</span>
+            <h3>Analisis Kasus dan Pemecahan Masalah</h3>
+            <p>LKPD dua halaman untuk memahami masalah, menganalisis perilaku, mengevaluasi solusi, dan merancang tindakan.</p>
+            <div class="resource-meta"><span>2 halaman</span><span>PBL</span></div>
+            <a class="btn primary wide" href="resources/lkpd-pancapath.pdf" target="_blank" rel="noopener">Buka LKPD</a>
+          </article>
+
+          <article class="resource-card resource-book">
+            <div class="resource-icon">📘</div>
+            <span class="resource-type">Buku Paket</span>
+            <h3>PPKn SMP Kelas VIII</h3>
+            <p>Buku paket lengkap. Untuk topik ini fokus pada Bab I, Subbab D: Pancasila sebagai Kepribadian Bangsa.</p>
+            <div class="resource-meta"><span>Referensi utama</span><span>Bab I</span></div>
+            <div class="resource-actions">
+              <a class="btn primary" href="resources/buku-pkn-kelas-viii.pdf#page=26" target="_blank" rel="noopener">Baca Subbab D</a>
+              <a class="btn secondary" href="resources/buku-pkn-kelas-viii.pdf" target="_blank" rel="noopener">Buku Lengkap</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="resource-tip">
+          <span>💡</span>
+          <div>
+            <strong>Tips belajar adaptif</strong>
+            <p>Jalur Eksplorasi dapat memakai PPT/video lebih banyak; Jalur Penguatan menggunakan sumber untuk memperkuat alasan; Jalur Tantangan dapat memakai buku sebagai referensi saat dibutuhkan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="media-modal hidden" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+      <div class="media-modal-backdrop" id="videoBackdrop"></div>
+      <div class="media-modal-card">
+        <button class="modal-close" id="closeVideoBtn" aria-label="Tutup video">×</button>
+        <span class="eyebrow">🎬 Video Pembelajaran</span>
+        <h3 id="videoModalTitle">Bagaimana Pancasila Menjadi Kepribadian Bangsa?</h3>
+        <video id="learningVideo" class="learning-video" controls preload="none" playsinline>
+          <source data-src="resources/video-kepribadian-bangsa.mp4" type="video/mp4" />
+          Browser kamu belum mendukung pemutar video HTML5.
+        </video>
+        <p class="video-note">Video baru dimuat ketika kamu menekan tombol tonton, sehingga halaman utama tetap ringan.</p>
+      </div>
+    </div>
+
     <section id="identitas" class="section">
       <div class="container identity-grid">
         <div>
           <span class="eyebrow">Langkah 1</span>
           <h2>Identitas Belajar</h2>
           <p class="muted">
-            Pilih rombel dan nomor peserta. PancaPath akan membuat kode otomatis, misalnya <strong>VIII-A-01</strong>.
-            Nama lengkap tidak dibutuhkan.
+            Tuliskan nama lengkap, lalu pilih rombel dan nomor peserta. PancaPath akan membuat kode otomatis, misalnya <strong>VIII-A-01</strong>.
           </p>
-          <div class="privacy-note">🔒 Kode peserta digunakan untuk rekap asesmen tanpa menampilkan nama lengkap.</div>
+          <div class="privacy-note">🔒 Nama digunakan untuk kebutuhan identifikasi guru, sedangkan kode PancaPath menjadi identitas teknis yang konsisten.</div>
         </div>
 
         <div class="identity-card">
+          <label for="namaInput">Nama Lengkap Peserta Didik</label>
+          <input id="namaInput" class="text-input" type="text" autocomplete="name"
+                 placeholder="Contoh: Nadia Putri Aulia" maxlength="80" />
+
           <label for="kelasSelect">Kelas / Rombel</label>
           <select id="kelasSelect">
             <option value="">Pilih rombel</option>
@@ -198,7 +283,11 @@
             <option value="">Pilih nomor</option>
           </select>
 
-          <div class="code-preview">Kode peserta: <strong id="kodePreview">—</strong></div>
+          <div class="code-preview">
+            <span>Kode PancaPath</span>
+            <strong id="kodePreview">—</strong>
+            <small>Kode dibuat otomatis dari kelas dan nomor peserta.</small>
+          </div>
           <button class="btn primary wide" id="saveIdentityBtn" disabled>Simpan Identitas & Lanjut</button>
           <p class="mini-note" id="identityNote"></p>
         </div>
@@ -297,6 +386,72 @@
       </div>
     </section>
 
+
+    <section id="pancaQuest" class="section quest-section">
+      <div class="quest-orb orb-a"></div>
+      <div class="quest-orb orb-b"></div>
+      <div class="container">
+        <div class="section-head quest-head">
+          <span class="eyebrow quest-eyebrow">🎮 PancaQuest</span>
+          <h2>Misi Nilai Pancasila</h2>
+          <p>
+            Taklukkan empat misi singkat untuk menguji ketelitian, alasan, dan kemampuan memecahkan masalah.
+            Tingkat bantuan mengikuti jalur belajarmu.
+          </p>
+        </div>
+
+        <div id="questLocked" class="quest-lock-card">
+          <div class="quest-lock-icon">🔐</div>
+          <h3>PancaQuest belum terbuka</h3>
+          <p>Selesaikan checkpoint pada jalur hasil asesmenmu terlebih dahulu.</p>
+        </div>
+
+        <div id="questArena" class="quest-arena hidden">
+          <div class="quest-topbar">
+            <div class="quest-player">
+              <div class="quest-avatar">🛡️</div>
+              <div>
+                <small>PLAYER</small>
+                <strong id="questPlayer">PancaPath Explorer</strong>
+                <span id="questRouteLabel">Jalur —</span>
+              </div>
+            </div>
+            <div class="quest-stats">
+              <div class="quest-stat"><small>XP</small><strong><span id="questXp">0</span>/100</strong></div>
+              <div class="quest-stat"><small>MISI</small><strong><span id="questMissionNo">1</span>/4</strong></div>
+              <div class="quest-stat"><small>STREAK</small><strong>🔥 <span id="questStreak">0</span></strong></div>
+            </div>
+          </div>
+
+          <div class="quest-xp-track"><div id="questXpBar"></div></div>
+
+          <div class="quest-stage" id="questStage">
+            <!-- dirender oleh JavaScript -->
+          </div>
+
+          <div class="quest-footer">
+            <div class="quest-tip" id="questTip">💡 Fokus pada perilaku dan alasannya.</div>
+            <button class="quest-hint-btn" type="button" id="questHintBtn">✨ Gunakan Petunjuk</button>
+          </div>
+        </div>
+
+        <div id="questComplete" class="quest-complete hidden">
+          <div class="quest-trophy">🏆</div>
+          <span class="quest-complete-label">PANCAQUEST COMPLETE</span>
+          <h2>Hebat, <span id="questCompleteName">Pathfinder</span>!</h2>
+          <p>Kamu telah menyelesaikan empat misi Nilai Pancasila.</p>
+          <div class="quest-result-grid">
+            <div><small>Skor XP</small><strong id="questFinalXp">0/100</strong></div>
+            <div><small>Badge</small><strong id="questBadge">🌱 Pancasila Explorer</strong></div>
+            <div><small>Jalur</small><strong id="questFinalRoute">—</strong></div>
+          </div>
+          <button class="btn quest-continue-btn" type="button" id="questContinueBtn">Lanjut ke Misi Bersama →</button>
+        </div>
+
+        <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+      </div>
+    </section>
+
     <section id="misiBersama" class="section">
       <div class="container">
         <div class="section-head">
@@ -311,7 +466,7 @@
         <div id="missionLocked" class="locked-card">
           <div class="lock-icon">🔐</div>
           <h3>Misi Bersama belum terbuka</h3>
-          <p>Selesaikan checkpoint pada jalur hasil asesmenmu terlebih dahulu.</p>
+          <p>Selesaikan PancaQuest terlebih dahulu. Setelah empat misi selesai, Misi Bersama akan terbuka.</p>
         </div>
 
         <div id="missionCard" class="mission-together hidden">
@@ -478,7 +633,11 @@
             asesmen akhir, dan refleksi.
           </p>
 
-          <div class="badge-card">
+          <div class="badge-card badge-card-v8">
+            <div>
+              <small>Nama Peserta</small>
+              <strong id="badgeName">—</strong>
+            </div>
             <div>
               <small>Kode Peserta</small>
               <strong id="badgeCode">—</strong>
@@ -486,6 +645,10 @@
             <div>
               <small>Jalur Belajar</small>
               <strong id="badgeRoute">—</strong>
+            </div>
+            <div>
+              <small>PancaQuest</small>
+              <strong id="badgeQuest">—</strong>
             </div>
             <div>
               <small>Status</small>
@@ -525,7 +688,7 @@
   <footer>
     <div class="container footer-wrap">
       <div>
-        <strong>PancaPath v7 • Final</strong>
+        <strong>PancaPath v9 • Final</strong>
         <p>Karya inovasi pembelajaran adaptif • Pendidikan Pancasila Kelas VIII</p>
       </div>
       <div class="footer-note">

@@ -1,6 +1,6 @@
 
 // =============================================================
-// PANCAPATH v7 - PETA BELAJAR ADAPTIF
+// PANCAPATH v9 - PETA BELAJAR ADAPTIF
 // =============================================================
 
 // Google Form A - Asesmen Awal (sudah diuji pengguna)
@@ -9,6 +9,7 @@ const GOOGLE_FORM_URL =
 
 const FORM_ENTRIES = {
   kelas: "entry.1906641876",
+  nama: "entry.1732132169",
   kode: "entry.312168079",
   skor: "entry.2099821671",
   jalur: "entry.131691736",
@@ -22,6 +23,7 @@ const GOOGLE_FORM_B_URL =
 
 const FORM_B_ENTRIES = {
   kelas: "entry.1903678857",
+  nama: "entry.1481616423",
   kode: "entry.1786727890",
   skorAwal: "entry.572865688",
   jalur: "entry.1690887185",
@@ -75,22 +77,23 @@ const questions = [
 
 let current = 0;
 let answers = new Array(questions.length).fill(null);
-let student = { kelas: "", nomor: "", kode: "" };
+let student = { nama: "", kelas: "", nomor: "", kode: "" };
 let latestResult = null;
 let selectedMissionBehavior = "";
 
 
-const JOURNEY_STEPS = ["identity","initial","path","mission","final","reflection","complete"];
+const JOURNEY_STEPS = ["identity","initial","path","quest","mission","final","reflection","complete"];
 
 function getJourneyState() {
   const hasStudent = !!localStorage.getItem("pancapath_student");
   const hasInitial = !!localStorage.getItem("pancapath_result");
   const hasPath = !!localStorage.getItem("pancapath_checkpoint_passed");
+  const hasQuest = !!localStorage.getItem("pancapath_quest");
   const hasMission = !!localStorage.getItem("pancapath_mission");
   const hasFinal = !!localStorage.getItem("pancapath_final_assessment");
   const hasReflection = !!localStorage.getItem("pancapath_reflection");
   const hasComplete = localStorage.getItem("pancapath_completed") === "true";
-  return { identity:hasStudent, initial:hasInitial, path:hasPath, mission:hasMission, final:hasFinal, reflection:hasReflection, complete:hasComplete };
+  return { identity:hasStudent, initial:hasInitial, path:hasPath, quest:hasQuest, mission:hasMission, final:hasFinal, reflection:hasReflection, complete:hasComplete };
 }
 
 function updateJourneyProgress() {
@@ -129,8 +132,11 @@ function showCompletion() {
   const savedStudent = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
   const route = result.score ? routeFromScore(Number(result.score)) : null;
 
+  if ($("badgeName")) $("badgeName").textContent = savedStudent.nama || "—";
   if ($("badgeCode")) $("badgeCode").textContent = savedStudent.kode || "—";
   if ($("badgeRoute")) $("badgeRoute").textContent = route ? route.short : "—";
+  const questResult = JSON.parse(localStorage.getItem("pancapath_quest") || "{}");
+  if ($("badgeQuest")) $("badgeQuest").textContent = questResult.completed ? `${questResult.xp || 0}/100 XP` : "—";
   $("completionLocked")?.classList.add("hidden");
   $("completionCard")?.classList.remove("hidden");
   localStorage.setItem("pancapath_completed", "true");
@@ -144,6 +150,7 @@ function clearPancaPathProgress() {
 }
 
 const $ = (id) => document.getElementById(id);
+const namaInput = $("namaInput");
 const kelasSelect = $("kelasSelect");
 const nomorSelect = $("nomorSelect");
 const kodePreview = $("kodePreview");
@@ -167,30 +174,34 @@ function populateNumbers() {
 }
 
 function buildStudentCode() {
+  const nama = namaInput.value.trim();
   const kelas = kelasSelect.value;
   const nomor = nomorSelect.value;
+
   if (!kelas || !nomor) {
     kodePreview.textContent = "—";
-    saveIdentityBtn.disabled = true;
-    return;
+  } else {
+    const huruf = kelas.replace("VIII ", "");
+    kodePreview.textContent = `VIII-${huruf}-${nomor}`;
   }
-  const huruf = kelas.replace("VIII ", "");
-  kodePreview.textContent = `VIII-${huruf}-${nomor}`;
-  saveIdentityBtn.disabled = false;
+
+  saveIdentityBtn.disabled = !(nama.length >= 2 && kelas && nomor);
 }
 
+namaInput.addEventListener("input", buildStudentCode);
 kelasSelect.addEventListener("change", buildStudentCode);
 nomorSelect.addEventListener("change", buildStudentCode);
 
 saveIdentityBtn.addEventListener("click", () => {
   student = {
+    nama: namaInput.value.trim(),
     kelas: kelasSelect.value,
     nomor: nomorSelect.value,
     kode: kodePreview.textContent
   };
   localStorage.setItem("pancapath_student", JSON.stringify(student));
   updateJourneyProgress();
-  identityNote.textContent = `Identitas tersimpan: ${student.kode}`;
+  identityNote.textContent = `Identitas tersimpan: ${student.nama} • ${student.kode}`;
   assessmentLocked.classList.add("hidden");
   assessmentCard.classList.remove("hidden");
   $("asesmen").scrollIntoView({ behavior: "smooth" });
@@ -280,6 +291,7 @@ function showResult() {
     <h3>${route.label}</h3>
     <p>${route.desc}</p>
     <div class="result-summary">
+      <div class="result-chip"><small>Nama</small><strong>${student.nama}</strong></div>
       <div class="result-chip"><small>Kode</small><strong>${student.kode}</strong></div>
       <div class="result-chip"><small>Kelas</small><strong>${student.kelas}</strong></div>
       <div class="result-chip"><small>Skor</small><strong>${score}/12</strong></div>
@@ -306,10 +318,11 @@ function openPrefilledForm(score, jalur) {
   }
   const params = new URLSearchParams();
   params.append(FORM_ENTRIES.kelas, student.kelas);
+  params.append(FORM_ENTRIES.nama, student.nama);
   params.append(FORM_ENTRIES.kode, student.kode);
   params.append(FORM_ENTRIES.skor, String(score));
   params.append(FORM_ENTRIES.jalur, jalur);
-  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v7");
+  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9");
   const url = `${GOOGLE_FORM_URL}?usp=pp_url&${params.toString()}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -620,13 +633,13 @@ function openPath(id, preview = true) {
       if (!preview && actualRoute === id) {
         localStorage.setItem("pancapath_checkpoint_passed", id);
         updateJourneyProgress();
-        unlockMission();
+        unlockQuest();
         $("checkpointFeedback").innerHTML +=
-          `<br><button type="button" class="btn primary" id="goMissionBtn" style="margin-top:10px">Lanjut ke Misi Bersama</button>`;
-        $("goMissionBtn").addEventListener("click", () => $("misiBersama").scrollIntoView({ behavior: "smooth" }));
+          `<br><button type="button" class="btn primary" id="goQuestBtn" style="margin-top:10px">🎮 Masuk ke PancaQuest</button>`;
+        $("goQuestBtn").addEventListener("click", () => $("pancaQuest").scrollIntoView({ behavior: "smooth" }));
       } else {
         $("checkpointFeedback").innerHTML +=
-          `<br><span style="font-size:.86rem">Ini pratinjau. Misi Bersama terbuka setelah checkpoint pada jalur hasil asesmenmu.</span>`;
+          `<br><span style="font-size:.86rem">Ini pratinjau. PancaQuest terbuka setelah checkpoint pada jalur hasil asesmenmu.</span>`;
       }
     } else {
       $("checkpointFeedback").innerHTML =
@@ -648,6 +661,364 @@ $("closePath").addEventListener("click", () => {
   $("ruangBelajar").classList.add("hidden");
   $("jalur").classList.remove("hidden");
   $("jalur").scrollIntoView({ behavior: "smooth" });
+});
+
+
+// =============================================================
+// SUMBER BELAJAR - VIDEO MODAL
+// =============================================================
+function openLearningVideo() {
+  const modal = $("videoModal");
+  const video = $("learningVideo");
+  const source = video?.querySelector("source");
+  if (source && !source.src) {
+    source.src = source.dataset.src;
+    video.load();
+  }
+  modal?.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+}
+
+function closeLearningVideo() {
+  const modal = $("videoModal");
+  const video = $("learningVideo");
+  if (video) video.pause();
+  modal?.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+
+$("openVideoBtn")?.addEventListener("click", openLearningVideo);
+$("closeVideoBtn")?.addEventListener("click", closeLearningVideo);
+$("videoBackdrop")?.addEventListener("click", closeLearningVideo);
+
+// =============================================================
+// PANCAQUEST - MISI NILAI PANCASILA
+// =============================================================
+const QUEST_MISSIONS = [
+  {
+    id: "nilai",
+    icon: "🕵️",
+    title: "Misi 1 — Detektif Nilai",
+    kicker: "TEMUKAN SILANYA",
+    text: "Ketua kelompok mendengarkan semua pendapat sebelum keputusan diambil bersama.",
+    prompt: "Nilai Pancasila manakah yang paling kuat terlihat?",
+    choices: [
+      ["Sila 1 — Ketuhanan", false],
+      ["Sila 2 — Kemanusiaan", false],
+      ["Sila 3 — Persatuan", false],
+      ["Sila 4 — Kerakyatan / Musyawarah", true],
+      ["Sila 5 — Keadilan Sosial", false]
+    ],
+    hint: "Cari kata kunci: mendengarkan pendapat dan keputusan bersama."
+  },
+  {
+    id: "radar",
+    icon: "📡",
+    title: "Misi 2 — Radar Perilaku",
+    kicker: "SCAN PERILAKU",
+    text: "Nilai setiap perilaku. Yang dinilai bukan sekadar selera budaya, tetapi sikap dan dampaknya.",
+    prompt: "Klasifikasikan tiga kartu berikut.",
+    cards: [
+      { text:"Menyukai musik Korea sambil tetap menghargai kesenian daerah.", answer:"sesuai" },
+      { text:"Mengejek kesenian daerah sebagai kuno dan tidak layak ditampilkan.", answer:"tidak" },
+      { text:"Menghargai teman yang memiliki selera budaya berbeda.", answer:"sesuai" }
+    ],
+    hint: "Kesukaan budaya tidak otomatis salah. Fokus pada sikap menghargai, persatuan, dan tanggung jawab."
+  },
+  {
+    id: "solusi",
+    icon: "🧩",
+    title: "Misi 3 — Ruang Musyawarah",
+    kicker: "PILIH SOLUSI",
+    text: "Kelas berselisih memilih pertunjukan budaya lokal atau budaya Korea. Beberapa siswa mulai saling merendahkan.",
+    prompt: "Pilih solusi yang paling sesuai nilai Pancasila.",
+    choices: [
+      ["Ketua memilih sendiri agar cepat selesai.", false],
+      ["Kelompok terbanyak menentukan dan kelompok lain harus menerima.", false],
+      ["Semua usulan didengar, dibandingkan berdasarkan alasan, lalu diputuskan melalui musyawarah.", true]
+    ],
+    hint: "Solusi terbaik perlu menjaga martabat, persatuan, dan musyawarah."
+  },
+  {
+    id: "aksi",
+    icon: "🛠️",
+    title: "Misi 4 — Builder Aksi",
+    kicker: "RANCANG AKSIMU",
+    text: "Sekarang ubah nilai menjadi tindakan yang bisa benar-benar dilakukan di kelas.",
+    prompt: "Lengkapi empat bagian. Semua bagian harus konkret dan dapat diamati.",
+    hint: "Gunakan rumus: tindakan + siapa + kapan + tanda berhasil."
+  }
+];
+
+let questState = {
+  mission: 0,
+  xp: 0,
+  streak: 0,
+  answered: {},
+  hintUsed: false
+};
+
+function getQuestRoute() {
+  const r = latestResult?.route?.id || JSON.parse(localStorage.getItem("pancapath_result") || "{}").route;
+  return r || "eksplorasi";
+}
+
+function questRouteMeta(routeId) {
+  const map = {
+    eksplorasi: {
+      label:"🟢 Eksplorasi",
+      intro:"Kamu mendapat bantuan lebih jelas. Gunakan petunjuk bila diperlukan.",
+      hint:"Petunjuk tersedia tanpa penalti."
+    },
+    penguatan: {
+      label:"🔵 Penguatan",
+      intro:"Gunakan alasanmu sebelum membuka petunjuk.",
+      hint:"Petunjuk tersedia bila kamu benar-benar membutuhkannya."
+    },
+    tantangan: {
+      label:"🟣 Tantangan",
+      intro:"Coba selesaikan secara mandiri. Petunjuk tetap ada sebagai jaring pengaman.",
+      hint:"Tantang dirimu untuk menyelesaikan tanpa petunjuk."
+    }
+  };
+  return map[routeId] || map.eksplorasi;
+}
+
+function unlockQuest() {
+  $("questLocked")?.classList.add("hidden");
+  $("questArena")?.classList.remove("hidden");
+  prepareQuestPlayer();
+  renderQuestMission();
+}
+
+function prepareQuestPlayer() {
+  const savedStudent = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
+  const route = getQuestRoute();
+  const meta = questRouteMeta(route);
+  if ($("questPlayer")) $("questPlayer").textContent = savedStudent.nama || "PancaPath Explorer";
+  if ($("questRouteLabel")) $("questRouteLabel").textContent = meta.label;
+  if ($("questTip")) $("questTip").textContent = `💡 ${meta.intro}`;
+}
+
+function updateQuestHUD() {
+  if ($("questXp")) $("questXp").textContent = questState.xp;
+  if ($("questMissionNo")) $("questMissionNo").textContent = Math.min(questState.mission + 1, 4);
+  if ($("questStreak")) $("questStreak").textContent = questState.streak;
+  if ($("questXpBar")) $("questXpBar").style.width = `${Math.min(100, questState.xp)}%`;
+}
+
+function questFeedback(message, type="good") {
+  const el = $("questFeedback");
+  if (!el) return;
+  el.className = `quest-feedback ${type}`;
+  el.innerHTML = message;
+}
+
+function fireConfetti(count=34) {
+  const layer = $("confettiLayer");
+  if (!layer) return;
+  const icons = ["◆","●","★","✦","■"];
+  for (let i=0; i<count; i++) {
+    const p = document.createElement("span");
+    p.className = "confetti-piece";
+    p.textContent = icons[Math.floor(Math.random()*icons.length)];
+    p.style.left = `${Math.random()*100}%`;
+    p.style.animationDelay = `${Math.random()*.35}s`;
+    p.style.animationDuration = `${1.7 + Math.random()*1.3}s`;
+    p.style.setProperty("--drift", `${-80 + Math.random()*160}px`);
+    layer.appendChild(p);
+    setTimeout(() => p.remove(), 3300);
+  }
+}
+
+function addQuestXp(amount, correct=true) {
+  questState.xp = Math.min(100, questState.xp + amount);
+  if (correct) questState.streak += 1;
+  else questState.streak = 0;
+  updateQuestHUD();
+}
+
+function renderQuestMission() {
+  const stage = $("questStage");
+  if (!stage) return;
+  const m = QUEST_MISSIONS[questState.mission];
+  questState.hintUsed = false;
+  $("questHintBtn")?.classList.remove("used");
+  $("questHintBtn").textContent = "✨ Gunakan Petunjuk";
+  updateQuestHUD();
+
+  let body = "";
+  if (m.choices) {
+    body = `
+      <div class="quest-choice-grid">
+        ${m.choices.map((c, i) => `
+          <button type="button" class="quest-choice" data-quest-choice="${i}" data-correct="${c[1]}">
+            <span class="choice-key">${String.fromCharCode(65+i)}</span>
+            <span>${c[0]}</span>
+          </button>`).join("")}
+      </div>`;
+  } else if (m.cards) {
+    body = `
+      <div class="radar-cards">
+        ${m.cards.map((c,i) => `
+          <div class="radar-card" data-radar-card="${i}">
+            <div class="radar-scan"></div>
+            <p>${c.text}</p>
+            <div class="radar-actions">
+              <button type="button" data-radar-answer="sesuai" data-card="${i}">✅ Sesuai</button>
+              <button type="button" data-radar-answer="tidak" data-card="${i}">❌ Tidak sesuai</button>
+            </div>
+          </div>`).join("")}
+      </div>`;
+  } else {
+    body = `
+      <div class="action-builder">
+        <label>Tindakan<textarea id="questAction" placeholder="Apa tindakan konkretnya?"></textarea></label>
+        <label>Pelaksana<input id="questActor" type="text" placeholder="Siapa yang melakukan?" /></label>
+        <label>Waktu<input id="questTime" type="text" placeholder="Kapan dilakukan?" /></label>
+        <label>Indikator keberhasilan<textarea id="questIndicator" placeholder="Apa tanda yang dapat diamati?"></textarea></label>
+        <button type="button" class="btn quest-submit-action" id="questActionBtn">⚡ Aktifkan Rencana</button>
+      </div>`;
+  }
+
+  stage.innerHTML = `
+    <div class="quest-mission-card quest-enter">
+      <div class="quest-mission-icon">${m.icon}</div>
+      <span class="quest-kicker">${m.kicker}</span>
+      <h3>${m.title}</h3>
+      <p class="quest-story">${m.text}</p>
+      <div class="quest-prompt">${m.prompt}</div>
+      ${body}
+      <div id="questFeedback" class="quest-feedback"></div>
+    </div>`;
+
+  bindQuestMissionEvents(m);
+}
+
+function bindQuestMissionEvents(m) {
+  if (m.choices) {
+    document.querySelectorAll("[data-quest-choice]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (document.querySelector(".quest-choice.locked")) return;
+        const correct = btn.dataset.correct === "true";
+        document.querySelectorAll(".quest-choice").forEach(x => x.classList.add("locked"));
+        if (correct) {
+          btn.classList.add("quest-correct");
+          addQuestXp(25, true);
+          questFeedback("✅ Tepat! Alasanmu selaras dengan nilai Pancasila. +25 XP", "good");
+          fireConfetti();
+          setTimeout(nextQuestMission, 1150);
+        } else {
+          btn.classList.add("quest-wrong");
+          document.querySelectorAll('.quest-choice[data-correct="true"]').forEach(x => x.classList.add("quest-correct"));
+          addQuestXp(10, false);
+          questFeedback("🔎 Belum paling tepat. Perhatikan kembali kriteria nilai Pancasila. Kamu tetap mendapat +10 XP karena sudah mencoba.", "retry");
+          setTimeout(nextQuestMission, 1500);
+        }
+      });
+    });
+  }
+
+  if (m.cards) {
+    const responses = {};
+    document.querySelectorAll("[data-radar-answer]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.dataset.card);
+        if (responses[idx] !== undefined) return;
+        const answer = btn.dataset.radarAnswer;
+        const card = m.cards[idx];
+        const correct = answer === card.answer;
+        responses[idx] = correct;
+        const cardEl = document.querySelector(`[data-radar-card="${idx}"]`);
+        cardEl?.classList.add(correct ? "radar-correct" : "radar-wrong");
+        cardEl?.querySelectorAll("button").forEach(b => b.disabled = true);
+
+        if (Object.keys(responses).length === m.cards.length) {
+          const correctCount = Object.values(responses).filter(Boolean).length;
+          const xp = correctCount === 3 ? 25 : correctCount === 2 ? 18 : 10;
+          addQuestXp(xp, correctCount >= 2);
+          questFeedback(`${correctCount === 3 ? "✅ Radar sempurna!" : "📡 Scan selesai."} ${correctCount}/3 klasifikasi tepat. +${xp} XP`, correctCount >= 2 ? "good" : "retry");
+          if (correctCount === 3) fireConfetti(40);
+          setTimeout(nextQuestMission, 1500);
+        }
+      });
+    });
+  }
+
+  $("questActionBtn")?.addEventListener("click", () => {
+    const data = {
+      action: $("questAction")?.value.trim(),
+      actor: $("questActor")?.value.trim(),
+      time: $("questTime")?.value.trim(),
+      indicator: $("questIndicator")?.value.trim()
+    };
+    if (!data.action || !data.actor || !data.time || !data.indicator) {
+      questFeedback("Lengkapi keempat bagian agar rencana aksimu dapat dijalankan.", "retry");
+      document.querySelector(".action-builder")?.classList.add("quest-shake");
+      setTimeout(() => document.querySelector(".action-builder")?.classList.remove("quest-shake"), 500);
+      return;
+    }
+    localStorage.setItem("pancapath_quest_action", JSON.stringify(data));
+    addQuestXp(25, true);
+    questFeedback("🛠️ Rencana aktif! Tindakanmu sudah memiliki pelaksana, waktu, dan indikator keberhasilan. +25 XP", "good");
+    fireConfetti(52);
+    setTimeout(completeQuest, 1200);
+  });
+}
+
+function nextQuestMission() {
+  questState.mission += 1;
+  if (questState.mission >= QUEST_MISSIONS.length) {
+    completeQuest();
+    return;
+  }
+  renderQuestMission();
+}
+
+function getQuestBadge(xp) {
+  if (xp >= 90) return "🏅 Pancasila Pathfinder";
+  if (xp >= 75) return "💡 Civic Problem Solver";
+  if (xp >= 55) return "🔎 Value Detective";
+  return "🌱 Pancasila Explorer";
+}
+
+function completeQuest() {
+  questState.mission = 4;
+  const savedStudent = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
+  const route = questRouteMeta(getQuestRoute());
+  const result = {
+    completed: true,
+    xp: questState.xp,
+    badge: getQuestBadge(questState.xp),
+    route: getQuestRoute(),
+    completed_at: new Date().toISOString()
+  };
+  localStorage.setItem("pancapath_quest", JSON.stringify(result));
+  updateJourneyProgress();
+
+  $("questArena")?.classList.add("hidden");
+  $("questLocked")?.classList.add("hidden");
+  $("questComplete")?.classList.remove("hidden");
+  if ($("questCompleteName")) $("questCompleteName").textContent = savedStudent.nama || "Pathfinder";
+  if ($("questFinalXp")) $("questFinalXp").textContent = `${result.xp}/100`;
+  if ($("questBadge")) $("questBadge").textContent = result.badge;
+  if ($("questFinalRoute")) $("questFinalRoute").textContent = route.label;
+  fireConfetti(80);
+  unlockMission();
+}
+
+$("questHintBtn")?.addEventListener("click", () => {
+  const m = QUEST_MISSIONS[questState.mission];
+  if (!m) return;
+  questState.hintUsed = true;
+  $("questHintBtn").classList.add("used");
+  $("questHintBtn").textContent = "💡 Petunjuk Aktif";
+  $("questTip").textContent = `💡 ${m.hint}`;
+});
+
+$("questContinueBtn")?.addEventListener("click", () => {
+  unlockMission();
+  $("misiBersama").scrollIntoView({ behavior:"smooth" });
 });
 
 // =============================================================
@@ -677,6 +1048,7 @@ $("saveMissionBtn").addEventListener("click", () => {
   }
 
   const data = {
+    nama: student.nama,
     kode: student.kode,
     behavior: selectedMissionBehavior,
     action,
@@ -702,6 +1074,7 @@ function unlockFinalAssessment() {
 $("finalAssessmentForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const data = {
+    nama: student.nama,
     kode: student.kode,
     c4: $("finalC4").value.trim(),
     c5: $("finalC5").value.trim(),
@@ -730,6 +1103,7 @@ $("reflectionForm").addEventListener("submit", e => {
   }
 
   const data = {
+    nama: student.nama,
     kode: student.kode,
     pemahaman: $("ref1").value.trim(),
     perilaku: $("ref2").value.trim(),
@@ -754,7 +1128,7 @@ function openPrefilledFormB() {
   const finalData = JSON.parse(localStorage.getItem("pancapath_final_assessment") || "{}");
   const reflection = JSON.parse(localStorage.getItem("pancapath_reflection") || "{}");
 
-  if (!savedStudent.kode || !savedResult.score || !mission.behavior ||
+  if (!savedStudent.nama || !savedStudent.kode || !savedResult.score || !mission.behavior ||
       !finalData.c4 || !finalData.c5 || !finalData.c6 ||
       !reflection.pemahaman || !reflection.perilaku || !reflection.bantuan ||
       !reflection.helpfulness) {
@@ -766,6 +1140,7 @@ function openPrefilledFormB() {
 
   const params = new URLSearchParams();
   params.append(FORM_B_ENTRIES.kelas, savedStudent.kelas);
+  params.append(FORM_B_ENTRIES.nama, savedStudent.nama);
   params.append(FORM_B_ENTRIES.kode, savedStudent.kode);
   params.append(FORM_B_ENTRIES.skorAwal, String(savedResult.score));
   params.append(FORM_B_ENTRIES.jalur, route.label);
@@ -823,11 +1198,12 @@ function restoreState() {
   if (savedStudent) {
     try {
       student = JSON.parse(savedStudent);
+      namaInput.value = student.nama || "";
       kelasSelect.value = student.kelas;
       nomorSelect.value = student.nomor;
       kodePreview.textContent = student.kode;
-      saveIdentityBtn.disabled = false;
-      identityNote.textContent = `Identitas tersimpan: ${student.kode}`;
+      saveIdentityBtn.disabled = !(student.nama && student.kelas && student.nomor);
+      identityNote.textContent = `Identitas tersimpan: ${student.nama} • ${student.kode}`;
       assessmentLocked.classList.add("hidden");
       assessmentCard.classList.remove("hidden");
     } catch (e) {}
@@ -844,7 +1220,28 @@ function restoreState() {
 
   const passed = localStorage.getItem("pancapath_checkpoint_passed");
   const resultRoute = latestResult?.route?.id;
-  if (passed && resultRoute && passed === resultRoute) unlockMission();
+  const savedQuest = localStorage.getItem("pancapath_quest");
+
+  if (passed && resultRoute && passed === resultRoute && !savedQuest) {
+    unlockQuest();
+  }
+
+  if (savedQuest) {
+    try {
+      const q = JSON.parse(savedQuest);
+      if (q.completed) {
+        const savedStudent2 = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
+        $("questLocked")?.classList.add("hidden");
+        $("questArena")?.classList.add("hidden");
+        $("questComplete")?.classList.remove("hidden");
+        if ($("questCompleteName")) $("questCompleteName").textContent = savedStudent2.nama || "Pathfinder";
+        if ($("questFinalXp")) $("questFinalXp").textContent = `${q.xp || 0}/100`;
+        if ($("questBadge")) $("questBadge").textContent = q.badge || getQuestBadge(q.xp || 0);
+        if ($("questFinalRoute")) $("questFinalRoute").textContent = questRouteMeta(q.route || resultRoute).label;
+        unlockMission();
+      }
+    } catch (e) {}
+  }
 
   const mission = localStorage.getItem("pancapath_mission");
   if (mission) {

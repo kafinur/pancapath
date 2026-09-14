@@ -1,48 +1,54 @@
-# PancaPath v7 — Visual Edition / GitHub Ready
+# PancaPath v9 — Sumber Belajar + PancaQuest
 
-Versi v7 mempertahankan seluruh alur dan integrasi PancaPath v6, lalu menambahkan identitas visual baru.
+Versi v9 mengintegrasikan sumber belajar dan permainan digital ke dalam PancaPath tanpa mengubah integrasi Form A dan Form B.
 
-## Pembaruan visual
-- Logo PancaPath resmi pada navbar dan landing page.
-- Favicon PancaPath.
-- Hero section baru dengan ilustrasi peta belajar adaptif.
-- Background ringan berbasis SVG dan CSS.
-- Tiga kartu alasan utama: asesmen awal, jalur adaptif, tujuan bersama.
-- Ikon visual pada tiga jalur belajar.
-- Tata letak landing page lebih modern dan responsif.
-- Semua aset visual lokal agar tidak bergantung pada CDN gambar.
+## Sumber belajar terintegrasi
+Folder `resources/` berisi:
+- `materi-pancasila-kelas-viii.pptx`
+- `video-kepribadian-bangsa.mp4`
+- `lkpd-pancapath.pdf`
+- `buku-pkn-kelas-viii.pdf`
 
-## Aset ringan
-Folder `assets/` berisi:
-- `pancapath-logo.webp`
-- `pancapath-mark.webp`
-- `favicon.png`
-- beberapa SVG ringan untuk ilustrasi dan dekorasi
+Video menggunakan `preload="none"` sehingga tidak dimuat saat landing page dibuka.
 
-Logo utama sudah dikompresi ke WebP untuk memperkecil beban halaman.
+## PancaQuest
+PancaQuest terdiri dari 4 misi:
+1. **Detektif Nilai** — memilih sila yang sesuai.
+2. **Radar Perilaku** — mengklasifikasikan perilaku.
+3. **Ruang Musyawarah** — memilih solusi paling sesuai Pancasila.
+4. **Builder Aksi** — merancang tindakan, pelaksana, waktu, dan indikator keberhasilan.
 
-## Fungsi yang tetap dipertahankan
-- Google Form A + Google Sheets
-- asesmen awal otomatis
-- tiga jalur adaptif
-- checkpoint
-- Misi Bersama
-- asesmen akhir C4–C5–C6
-- refleksi
-- Google Form B + Google Sheets
-- progress tracker
-- halaman selesai
-- badge Pancasila Pathfinder
-- reset peserta baru
+PancaQuest baru terbuka setelah siswa lulus checkpoint pada jalur hasil asesmen. Setelah PancaQuest selesai, Misi Bersama terbuka.
 
-## Upload ke GitHub Pages
-Upload seluruh isi ZIP ke root repository, termasuk folder `assets/`.
+## Gamifikasi
+- XP maksimum 100.
+- Progress bar animatif.
+- Streak.
+- Petunjuk adaptif.
+- Animasi kartu, radar scan, feedback benar/salah, trophy, dan confetti.
+- Badge hasil:
+  - Pancasila Explorer
+  - Value Detective
+  - Civic Problem Solver
+  - Pancasila Pathfinder
 
-Pastikan struktur:
-- index.html
-- styles.css
-- script.js
-- README.md
-- assets/
+## Alur v9
+Beranda → Tujuan → Sumber Belajar → Identitas → Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Selesai.
 
-Jangan memindahkan file dalam folder `assets`, karena HTML mengacu pada path tersebut.
+## Upload GitHub Pages
+Upload **seluruh isi ZIP** ke root repository, termasuk folder:
+- `assets/`
+- `resources/`
+
+File video berukuran sekitar 11 MB dan masih berada di bawah batas ukuran file GitHub biasa. Pastikan upload selesai sebelum commit.
+
+## Pengujian
+1. Cek empat kartu Sumber Belajar.
+2. Pastikan video hanya dimuat setelah tombol Tonton Video ditekan.
+3. Uji tiga jalur adaptif.
+4. Lulus checkpoint.
+5. Pastikan PancaQuest terbuka.
+6. Selesaikan 4 misi.
+7. Pastikan Misi Bersama terbuka.
+8. Pastikan Form A dan B tetap berjalan.
+9. Uji reset peserta baru.
