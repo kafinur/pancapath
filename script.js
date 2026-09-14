@@ -1,6 +1,6 @@
 
 // =============================================================
-// PANCAPATH v9 - PETA BELAJAR ADAPTIF
+// PANCAPATH v9.1 - PETA BELAJAR ADAPTIF
 // =============================================================
 
 // Google Form A - Asesmen Awal (sudah diuji pengguna)
@@ -27,6 +27,8 @@ const FORM_B_ENTRIES = {
   kode: "entry.1786727890",
   skorAwal: "entry.572865688",
   jalur: "entry.1690887185",
+  skorPancaQuest: "entry.717118100",
+  badgePancaQuest: "entry.1724061796",
   c4: "entry.207178485",
   c5: "entry.1836426205",
   c6: "entry.132386902",
@@ -322,7 +324,7 @@ function openPrefilledForm(score, jalur) {
   params.append(FORM_ENTRIES.kode, student.kode);
   params.append(FORM_ENTRIES.skor, String(score));
   params.append(FORM_ENTRIES.jalur, jalur);
-  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9");
+  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9.1");
   const url = `${GOOGLE_FORM_URL}?usp=pp_url&${params.toString()}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -1124,15 +1126,17 @@ $("reflectionForm").addEventListener("submit", e => {
 function openPrefilledFormB() {
   const savedStudent = student.kode ? student : JSON.parse(localStorage.getItem("pancapath_student") || "{}");
   const savedResult = JSON.parse(localStorage.getItem("pancapath_result") || "{}");
+  const quest = JSON.parse(localStorage.getItem("pancapath_quest") || "{}");
   const mission = JSON.parse(localStorage.getItem("pancapath_mission") || "{}");
   const finalData = JSON.parse(localStorage.getItem("pancapath_final_assessment") || "{}");
   const reflection = JSON.parse(localStorage.getItem("pancapath_reflection") || "{}");
 
-  if (!savedStudent.nama || !savedStudent.kode || !savedResult.score || !mission.behavior ||
-      !finalData.c4 || !finalData.c5 || !finalData.c6 ||
+  if (!savedStudent.nama || !savedStudent.kode || !savedResult.score ||
+      !quest.completed || typeof quest.xp !== "number" || !quest.badge ||
+      !mission.behavior || !finalData.c4 || !finalData.c5 || !finalData.c6 ||
       !reflection.pemahaman || !reflection.perilaku || !reflection.bantuan ||
       !reflection.helpfulness) {
-    alert("Data akhir belum lengkap. Pastikan Misi Bersama, asesmen akhir, dan refleksi sudah disimpan.");
+    alert("Data akhir belum lengkap. Pastikan PancaQuest, Misi Bersama, asesmen akhir, dan refleksi sudah diselesaikan.");
     return;
   }
 
@@ -1144,6 +1148,8 @@ function openPrefilledFormB() {
   params.append(FORM_B_ENTRIES.kode, savedStudent.kode);
   params.append(FORM_B_ENTRIES.skorAwal, String(savedResult.score));
   params.append(FORM_B_ENTRIES.jalur, route.label);
+  params.append(FORM_B_ENTRIES.skorPancaQuest, String(quest.xp));
+  params.append(FORM_B_ENTRIES.badgePancaQuest, quest.badge);
   params.append(FORM_B_ENTRIES.c4, finalData.c4);
   params.append(FORM_B_ENTRIES.c5, finalData.c5);
   params.append(FORM_B_ENTRIES.c6, finalData.c6);

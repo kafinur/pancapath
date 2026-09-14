@@ -1,54 +1,39 @@
-# PancaPath v9 — Sumber Belajar + PancaQuest
+# PancaPath v9.1 — PancaQuest + Form B Terintegrasi
 
-Versi v9 mengintegrasikan sumber belajar dan permainan digital ke dalam PancaPath tanpa mengubah integrasi Form A dan Form B.
+Versi ini melanjutkan PancaPath v9 dan menambahkan sinkronisasi hasil PancaQuest ke Google Form B.
 
-## Sumber belajar terintegrasi
-Folder `resources/` berisi:
-- `materi-pancasila-kelas-viii.pptx`
-- `video-kepribadian-bangsa.mp4`
-- `lkpd-pancapath.pdf`
-- `buku-pkn-kelas-viii.pdf`
+## Integrasi baru Form B
+- **Skor PancaQuest** → `entry.717118100`
+- **Badge PancaQuest** → `entry.1724061796`
 
-Video menggunakan `preload="none"` sehingga tidak dimuat saat landing page dibuka.
+Data dikirim otomatis dari hasil game yang tersimpan di perangkat:
+- `quest.xp` → Skor PancaQuest
+- `quest.badge` → Badge PancaQuest
 
-## PancaQuest
-PancaQuest terdiri dari 4 misi:
-1. **Detektif Nilai** — memilih sila yang sesuai.
-2. **Radar Perilaku** — mengklasifikasikan perilaku.
-3. **Ruang Musyawarah** — memilih solusi paling sesuai Pancasila.
-4. **Builder Aksi** — merancang tindakan, pelaksana, waktu, dan indikator keberhasilan.
+Siswa tidak perlu mengetik ulang skor atau badge.
 
-PancaQuest baru terbuka setelah siswa lulus checkpoint pada jalur hasil asesmen. Setelah PancaQuest selesai, Misi Bersama terbuka.
+## Badge yang digunakan
+- 🌱 Pancasila Explorer
+- 🔎 Value Detective
+- 💡 Civic Problem Solver
+- 🏅 Pancasila Pathfinder
 
-## Gamifikasi
-- XP maksimum 100.
-- Progress bar animatif.
-- Streak.
-- Petunjuk adaptif.
-- Animasi kartu, radar scan, feedback benar/salah, trophy, dan confetti.
-- Badge hasil:
-  - Pancasila Explorer
-  - Value Detective
-  - Civic Problem Solver
-  - Pancasila Pathfinder
+## Alur data
+Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Google Sheets.
 
-## Alur v9
-Beranda → Tujuan → Sumber Belajar → Identitas → Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Selesai.
+## Catatan
+Form B hanya dapat dibuka dari PancaPath setelah:
+1. PancaQuest selesai,
+2. Misi Bersama tersimpan,
+3. Asesmen akhir C4–C6 tersimpan,
+4. Refleksi tersimpan.
 
-## Upload GitHub Pages
-Upload **seluruh isi ZIP** ke root repository, termasuk folder:
-- `assets/`
-- `resources/`
-
-File video berukuran sekitar 11 MB dan masih berada di bawah batas ukuran file GitHub biasa. Pastikan upload selesai sebelum commit.
-
-## Pengujian
-1. Cek empat kartu Sumber Belajar.
-2. Pastikan video hanya dimuat setelah tombol Tonton Video ditekan.
-3. Uji tiga jalur adaptif.
-4. Lulus checkpoint.
-5. Pastikan PancaQuest terbuka.
-6. Selesaikan 4 misi.
-7. Pastikan Misi Bersama terbuka.
-8. Pastikan Form A dan B tetap berjalan.
-9. Uji reset peserta baru.
+## Pengujian yang direkomendasikan
+Gunakan satu peserta uji. Setelah PancaQuest selesai, lanjutkan sampai Form B lalu pastikan:
+- nama benar,
+- kode benar,
+- skor asesmen awal benar,
+- jalur benar,
+- Skor PancaQuest terisi otomatis,
+- Badge PancaQuest terisi otomatis,
+- jawaban C4–C6 dan refleksi tetap terisi.
