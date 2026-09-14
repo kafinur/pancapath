@@ -1,39 +1,26 @@
-# PancaPath v9.1 — PancaQuest + Form B Terintegrasi
+# PancaPath v9.2 — Finalisasi Alur
 
-Versi ini melanjutkan PancaPath v9 dan menambahkan sinkronisasi hasil PancaQuest ke Google Form B.
+Versi v9.2 memperbaiki konsistensi penomoran dan narasi tahapan setelah PancaQuest ditambahkan.
 
-## Integrasi baru Form B
-- **Skor PancaQuest** → `entry.717118100`
-- **Badge PancaQuest** → `entry.1724061796`
+## Urutan final
+1. Identitas Belajar
+2. Asesmen Awal
+3. Jalur Belajar Adaptif
+4. PancaQuest
+5. Misi Bersama
+6. Asesmen Akhir
+7. Refleksi
+8. Perjalanan Selesai
 
-Data dikirim otomatis dari hasil game yang tersimpan di perangkat:
-- `quest.xp` → Skor PancaQuest
-- `quest.badge` → Badge PancaQuest
+## Yang diperbaiki
+- Label PancaQuest menjadi **Langkah 4**.
+- Misi Bersama menjadi **Langkah 5**.
+- Asesmen Akhir menjadi **Langkah 6**.
+- Refleksi menjadi **Langkah 7**.
+- Perjalanan Selesai menjadi **Langkah 8**.
+- Narasi Misi Bersama diperbarui agar menyebut checkpoint dan PancaQuest.
+- Narasi penyelesaian akhir juga menyebut PancaQuest.
+- Form A, Form B, Sumber Belajar, PancaQuest, dan semua integrasi data tidak diubah.
 
-Siswa tidak perlu mengetik ulang skor atau badge.
-
-## Badge yang digunakan
-- 🌱 Pancasila Explorer
-- 🔎 Value Detective
-- 💡 Civic Problem Solver
-- 🏅 Pancasila Pathfinder
-
-## Alur data
-Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Google Sheets.
-
-## Catatan
-Form B hanya dapat dibuka dari PancaPath setelah:
-1. PancaQuest selesai,
-2. Misi Bersama tersimpan,
-3. Asesmen akhir C4–C6 tersimpan,
-4. Refleksi tersimpan.
-
-## Pengujian yang direkomendasikan
-Gunakan satu peserta uji. Setelah PancaQuest selesai, lanjutkan sampai Form B lalu pastikan:
-- nama benar,
-- kode benar,
-- skor asesmen awal benar,
-- jalur benar,
-- Skor PancaQuest terisi otomatis,
-- Badge PancaQuest terisi otomatis,
-- jawaban C4–C6 dan refleksi tetap terisi.
+## Alur
+Beranda → Tujuan → Sumber Belajar → Identitas → Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Selesai.

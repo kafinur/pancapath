@@ -1,6 +1,6 @@
 
 // =============================================================
-// PANCAPATH v9.1 - PETA BELAJAR ADAPTIF
+// PANCAPATH v9.2 - PETA BELAJAR ADAPTIF
 // =============================================================
 
 // Google Form A - Asesmen Awal (sudah diuji pengguna)
@@ -324,7 +324,7 @@ function openPrefilledForm(score, jalur) {
   params.append(FORM_ENTRIES.kode, student.kode);
   params.append(FORM_ENTRIES.skor, String(score));
   params.append(FORM_ENTRIES.jalur, jalur);
-  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9.1");
+  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9.2");
   const url = `${GOOGLE_FORM_URL}?usp=pp_url&${params.toString()}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
