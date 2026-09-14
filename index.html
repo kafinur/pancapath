@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PancaPath - Peta Belajar Adaptif berbasis asesmen awal untuk Pendidikan Pancasila." />
+  <title>PancaPath | Peta Belajar Adaptif</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#beranda" aria-label="PancaPath beranda">
+        <span class="brand-mark">P</span>
+        <span><strong>PancaPath</strong><small>Peta Belajar Adaptif</small></span>
+      </a>
+      <nav class="nav">
+        <a href="#beranda">Beranda</a><a href="#tujuan">Tujuan</a><a href="#asesmen">Cek Kesiapan</a><a href="#jalur">Jalur Belajar</a><a href="#refleksi">Refleksi</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Pembelajaran Mendalam • Asesmen Awal • Pendidikan Pancasila</span>
+          <h1>Setiap peserta didik punya <span>jalur belajar</span> yang berbeda.</h1>
+          <p class="lead">PancaPath membantu peserta didik memulai pembelajaran dari titik yang sesuai dengan kesiapan belajarnya, lalu berkembang melalui pengalaman yang berkesadaran, bermakna, dan menggembirakan.</p>
+          <div class="hero-actions"><a class="btn primary" href="#asesmen">Mulai Cek Kesiapan</a><a class="btn secondary" href="#jalur">Lihat Jalur Belajar</a></div>
+          <div class="hero-note"><strong>Prinsip utama:</strong> tujuan belajarnya sama, tetapi dukungan dan perjalanan belajarnya dapat berbeda.</div>
+        </div>
+        <div class="map-card">
+          <div class="map-title">Perjalanan Belajarmu</div>
+          <div class="map-step active"><span>1</span><div><b>Cek Kesiapan</b><small>Kenali titik awal belajarmu</small></div></div>
+          <div class="map-line"></div>
+          <div class="map-step"><span>2</span><div><b>Temukan Jalur</b><small>Eksplorasi, Penguatan, atau Tantangan</small></div></div>
+          <div class="map-line"></div>
+          <div class="map-step"><span>3</span><div><b>Selesaikan Misi</b><small>Belajar sesuai kebutuhan</small></div></div>
+          <div class="map-line"></div>
+          <div class="map-step"><span>4</span><div><b>Checkpoint & Refleksi</b><small>Lihat perkembanganmu</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tujuan" class="section alt"><div class="container">
+      <div class="section-head"><span class="eyebrow">Tujuan Pembelajaran</span><h2>Pancasila sebagai Kepribadian Bangsa</h2><p>Peserta didik memahami makna Pancasila sebagai kepribadian bangsa, menganalisis penerapannya dalam kehidupan sehari-hari, serta merumuskan tindakan nyata.</p></div>
+      <div class="cards three">
+        <article class="info-card"><div class="icon">🧠</div><h3>Memahami</h3><p>Menghubungkan konsep Pancasila dengan contoh nyata dalam kehidupan sekolah dan masyarakat.</p></article>
+        <article class="info-card"><div class="icon">🔎</div><h3>Mengaplikasi</h3><p>Menganalisis kasus dan menentukan nilai Pancasila yang relevan untuk menyelesaikan masalah.</p></article>
+        <article class="info-card"><div class="icon">💭</div><h3>Merefleksi</h3><p>Menilai pengalaman belajar dan merumuskan tindakan nyata secara bertanggung jawab.</p></article>
+      </div>
+    </div></section>
+
+    <section id="asesmen" class="section"><div class="container assessment-wrap">
+      <div class="section-head narrow"><span class="eyebrow">Asesmen Awal</span><h2>Cek Kesiapan Belajar</h2><p>Jawab secara jujur. Hasil ini bukan label kemampuan, tetapi panduan untuk menentukan titik awal belajar yang paling sesuai.</p></div>
+      <div class="assessment-card"><div class="progress"><div id="progressBar"></div></div><div id="quizBox"></div><div class="quiz-actions"><button class="btn secondary" id="prevBtn" disabled>Sebelumnya</button><button class="btn primary" id="nextBtn">Berikutnya</button></div></div>
+      <div id="resultBox" class="result-box hidden"></div>
+    </div></section>
+
+    <section id="jalur" class="section alt"><div class="container">
+      <div class="section-head"><span class="eyebrow">Peta Jalur Belajar</span><h2>Tiga Jalur, Satu Tujuan</h2><p>Jalur bersifat dinamis. Peserta didik dapat berpindah jalur setelah menyelesaikan checkpoint.</p></div>
+      <div class="path-grid">
+        <article class="path-card green"><span class="path-tag">Jalur Eksplorasi</span><h3>Aku Butuh Panduan</h3><p>Untuk peserta didik yang memerlukan contoh konkret, visual, dan bantuan bertahap.</p><ul><li>Video dan materi ringkas</li><li>Contoh perilaku nyata</li><li>Scaffolding bertahap</li><li>Latihan terarah</li></ul><button class="btn path-btn" data-open="eksplorasi">Buka Jalur</button></article>
+        <article class="path-card blue"><span class="path-tag">Jalur Penguatan</span><h3>Aku Siap Menganalisis</h3><p>Untuk peserta didik yang telah memahami konsep dasar dan siap menguatkan analisis.</p><ul><li>Kasus kontekstual</li><li>Diskusi dan analisis</li><li>LKPD digital</li><li>Umpan balik formatif</li></ul><button class="btn path-btn" data-open="penguatan">Buka Jalur</button></article>
+        <article class="path-card purple"><span class="path-tag">Jalur Tantangan</span><h3>Aku Siap Memecahkan Masalah</h3><p>Untuk peserta didik yang siap mengevaluasi, mengambil keputusan, dan merancang solusi.</p><ul><li>Studi kasus HOTS</li><li>Evaluasi alternatif tindakan</li><li>Argumentasi dan solusi</li><li>Produk mini kreatif</li></ul><button class="btn path-btn" data-open="tantangan">Buka Jalur</button></article>
+      </div>
+    </div></section>
+
+    <section id="ruangBelajar" class="section hidden"><div class="container"><button class="back-link" id="closePath">← Kembali ke peta jalur</button><div id="pathContent"></div></div></section>
+
+    <section id="refleksi" class="section"><div class="container reflection-grid">
+      <div><span class="eyebrow">Refleksi Akhir</span><h2>Apa yang berubah setelah belajar?</h2><p>Refleksi membantu peserta didik menyadari proses berpikir, pengalaman belajar, dan tindakan nyata yang dapat dilakukan.</p></div>
+      <form class="reflection-card" id="reflectionForm">
+        <label>Pengetahuan baru yang saya peroleh:<textarea id="ref1" placeholder="Tuliskan satu hal penting yang kamu pahami..."></textarea></label>
+        <label>Hal yang masih menantang bagi saya:<textarea id="ref2" placeholder="Tuliskan bagian yang masih perlu kamu pelajari..."></textarea></label>
+        <label>Tindakan nyata yang akan saya lakukan:<textarea id="ref3" placeholder="Contoh: menghargai pendapat saat diskusi..."></textarea></label>
+        <button class="btn primary" type="submit">Simpan Refleksi</button><p class="save-note" id="saveNote"></p>
+      </form>
+    </div></section>
+
+    <section class="section alt teacher-note"><div class="container"><div class="teacher-box"><div><span class="eyebrow">Catatan untuk Guru</span><h2>Media adaptif, bukan alat pelabelan.</h2></div><p>Hasil asesmen digunakan untuk menentukan dukungan awal. Peserta didik tidak disebut “rendah, sedang, tinggi”. Guru tetap memantau perkembangan dan dapat memindahkan peserta didik ke jalur berikutnya berdasarkan hasil checkpoint.</p></div></div></section>
+  </main>
+
+  <footer><div class="container footer-wrap"><div><strong>PancaPath</strong><p>Peta Belajar Adaptif Pendidikan Pancasila</p></div><div class="footer-note">Dikembangkan sebagai karya inovasi pembelajaran berbasis asesmen awal dan pembelajaran mendalam.</div></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
