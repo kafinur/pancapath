@@ -3,87 +3,538 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PancaPath - Peta Belajar Adaptif berbasis asesmen awal untuk Pendidikan Pancasila." />
-  <title>PancaPath | Peta Belajar Adaptif</title>
+  <meta name="description" content="PancaPath v7 - Peta Belajar Adaptif Pendidikan Pancasila kelas VIII berbasis asesmen awal dan Pembelajaran Mendalam." />
+  <title>PancaPath v7 | Peta Belajar Adaptif</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#beranda" aria-label="PancaPath beranda">
-        <span class="brand-mark">P</span>
-        <span><strong>PancaPath</strong><small>Peta Belajar Adaptif</small></span>
+        <span class="brand-logo-wrap">
+          <img src="assets/pancapath-mark.webp" alt="" class="brand-logo" width="42" height="42" />
+        </span>
+        <span>
+          <strong>PancaPath</strong>
+          <small>Peta Belajar Adaptif • v7</small>
+        </span>
       </a>
-      <nav class="nav">
-        <a href="#beranda">Beranda</a><a href="#tujuan">Tujuan</a><a href="#asesmen">Cek Kesiapan</a><a href="#jalur">Jalur Belajar</a><a href="#refleksi">Refleksi</a>
+      <nav class="nav" id="mainNav">
+        <a href="#beranda">Beranda</a>
+        <a href="#tujuan">Tujuan</a>
+        <a href="#identitas">Identitas</a>
+        <a href="#asesmen">Asesmen Awal</a>
+        <a href="#jalur">Jalur</a>
+        <a href="#misiBersama">Misi Bersama</a>
+        <a href="#asesmenAkhir">Asesmen Akhir</a>
+        <a href="#refleksi">Refleksi</a>
       </nav>
       <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
     </div>
   </header>
 
+  <div class="journey-progress-wrap">
+    <div class="container">
+      <div class="journey-progress" id="journeyProgress">
+        <div class="progress-item" data-step="identity"><span>1</span><small>Identitas</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="initial"><span>2</span><small>Asesmen Awal</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="path"><span>3</span><small>Jalur</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="mission"><span>4</span><small>Misi</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="final"><span>5</span><small>Asesmen Akhir</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="reflection"><span>6</span><small>Refleksi</small></div>
+        <div class="progress-link"></div>
+        <div class="progress-item" data-step="complete"><span>7</span><small>Selesai</small></div>
+      </div>
+    </div>
+  </div>
+
   <main>
-    <section id="beranda" class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Pembelajaran Mendalam • Asesmen Awal • Pendidikan Pancasila</span>
-          <h1>Setiap peserta didik punya <span>jalur belajar</span> yang berbeda.</h1>
-          <p class="lead">PancaPath membantu peserta didik memulai pembelajaran dari titik yang sesuai dengan kesiapan belajarnya, lalu berkembang melalui pengalaman yang berkesadaran, bermakna, dan menggembirakan.</p>
-          <div class="hero-actions"><a class="btn primary" href="#asesmen">Mulai Cek Kesiapan</a><a class="btn secondary" href="#jalur">Lihat Jalur Belajar</a></div>
-          <div class="hero-note"><strong>Prinsip utama:</strong> tujuan belajarnya sama, tetapi dukungan dan perjalanan belajarnya dapat berbeda.</div>
+    <section id="beranda" class="hero hero-v7">
+      <div class="hero-decor decor-one"></div>
+      <div class="hero-decor decor-two"></div>
+      <img class="hero-bg-path" src="assets/bg-learning-path.svg" alt="" aria-hidden="true" />
+      <div class="container hero-grid-v7">
+        <div class="hero-copy">
+          <img class="hero-logo" src="assets/pancapath-logo.webp" alt="Logo PancaPath - Peta Belajar Adaptif" />
+          <span class="eyebrow">Pendidikan Pancasila • Kelas VIII • Pembelajaran Adaptif</span>
+          <h1>Belajar dari <span>titik awalmu</span>, berkembang melalui jalur yang sesuai.</h1>
+          <p class="lead">
+            PancaPath memanfaatkan asesmen awal untuk memberi dukungan belajar yang berbeda,
+            tanpa membedakan tujuan akhir setiap peserta didik.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#identitas">Mulai Perjalanan</a>
+            <a class="btn secondary" href="#alur">Lihat Alur Belajar</a>
+          </div>
+          <div class="hero-principle">
+            <span class="principle-icon">✦</span>
+            <div>
+              <strong>Tujuan sama, dukungan berbeda.</strong>
+              <small>Jalur belajar bukan label kemampuan, melainkan bentuk dukungan awal yang sesuai kebutuhan.</small>
+            </div>
+          </div>
         </div>
-        <div class="map-card">
-          <div class="map-title">Perjalanan Belajarmu</div>
-          <div class="map-step active"><span>1</span><div><b>Cek Kesiapan</b><small>Kenali titik awal belajarmu</small></div></div>
-          <div class="map-line"></div>
-          <div class="map-step"><span>2</span><div><b>Temukan Jalur</b><small>Eksplorasi, Penguatan, atau Tantangan</small></div></div>
-          <div class="map-line"></div>
-          <div class="map-step"><span>3</span><div><b>Selesaikan Misi</b><small>Belajar sesuai kebutuhan</small></div></div>
-          <div class="map-line"></div>
-          <div class="map-step"><span>4</span><div><b>Checkpoint & Refleksi</b><small>Lihat perkembanganmu</small></div></div>
+
+        <div class="hero-visual-v7" id="alur">
+          <div class="visual-glow"></div>
+          <img src="assets/hero-learning-map.svg" alt="Ilustrasi peta belajar adaptif PancaPath" class="hero-map-image" />
+          <div class="floating-path-chip chip-green">🟢 Eksplorasi</div>
+          <div class="floating-path-chip chip-blue">🔵 Penguatan</div>
+          <div class="floating-path-chip chip-purple">🟣 Tantangan</div>
+        </div>
+      </div>
+
+      <div class="container student-guide-v7">
+        <div class="guide-title">
+          <span>🧭</span>
+          <div><strong>Petunjuk Perjalanan</strong><small>Selesaikan tahap secara berurutan</small></div>
+        </div>
+        <div class="guide-steps">
+          <span><b>01</b> Identitas</span>
+          <span><b>02</b> Asesmen Awal</span>
+          <span><b>03</b> Jalur Adaptif</span>
+          <span><b>04</b> Misi Bersama</span>
+          <span><b>05</b> Asesmen Akhir</span>
+          <span><b>06</b> Refleksi</span>
         </div>
       </div>
     </section>
 
-    <section id="tujuan" class="section alt"><div class="container">
-      <div class="section-head"><span class="eyebrow">Tujuan Pembelajaran</span><h2>Pancasila sebagai Kepribadian Bangsa</h2><p>Peserta didik memahami makna Pancasila sebagai kepribadian bangsa, menganalisis penerapannya dalam kehidupan sehari-hari, serta merumuskan tindakan nyata.</p></div>
-      <div class="cards three">
-        <article class="info-card"><div class="icon">🧠</div><h3>Memahami</h3><p>Menghubungkan konsep Pancasila dengan contoh nyata dalam kehidupan sekolah dan masyarakat.</p></article>
-        <article class="info-card"><div class="icon">🔎</div><h3>Mengaplikasi</h3><p>Menganalisis kasus dan menentukan nilai Pancasila yang relevan untuk menyelesaikan masalah.</p></article>
-        <article class="info-card"><div class="icon">💭</div><h3>Merefleksi</h3><p>Menilai pengalaman belajar dan merumuskan tindakan nyata secara bertanggung jawab.</p></article>
+    <section class="section why-section">
+      <div class="container">
+        <div class="section-head center-head">
+          <span class="eyebrow">Mengapa PancaPath?</span>
+          <h2>Peta belajar yang dimulai dari kebutuhan peserta didik</h2>
+          <p>PancaPath menghubungkan asesmen, dukungan adaptif, dan tujuan pembelajaran dalam satu perjalanan yang sederhana.</p>
+        </div>
+        <div class="visual-feature-grid">
+          <article class="visual-feature-card">
+            <img src="assets/icon-assessment.svg" alt="" class="feature-icon-img" />
+            <div><span class="feature-kicker">Mulai dari data</span><h3>Asesmen Awal</h3><p>Peserta didik memulai dari cek kesiapan singkat yang menentukan kadar dukungan awal.</p></div>
+          </article>
+          <article class="visual-feature-card featured">
+            <img src="assets/icon-adaptive.svg" alt="" class="feature-icon-img" />
+            <div><span class="feature-kicker">Belajar sesuai kebutuhan</span><h3>Jalur Adaptif</h3><p>Eksplorasi, Penguatan, dan Tantangan memberi bantuan berbeda tanpa memberi label kemampuan.</p></div>
+          </article>
+          <article class="visual-feature-card">
+            <img src="assets/icon-goal.svg" alt="" class="feature-icon-img" />
+            <div><span class="feature-kicker">Bertemu kembali</span><h3>Tujuan Bersama</h3><p>Semua jalur berakhir pada Misi Bersama dan asesmen akhir C4–C6 yang sama.</p></div>
+          </article>
+        </div>
       </div>
-    </div></section>
+    </section>
 
-    <section id="asesmen" class="section"><div class="container assessment-wrap">
-      <div class="section-head narrow"><span class="eyebrow">Asesmen Awal</span><h2>Cek Kesiapan Belajar</h2><p>Jawab secara jujur. Hasil ini bukan label kemampuan, tetapi panduan untuk menentukan titik awal belajar yang paling sesuai.</p></div>
-      <div class="assessment-card"><div class="progress"><div id="progressBar"></div></div><div id="quizBox"></div><div class="quiz-actions"><button class="btn secondary" id="prevBtn" disabled>Sebelumnya</button><button class="btn primary" id="nextBtn">Berikutnya</button></div></div>
-      <div id="resultBox" class="result-box hidden"></div>
-    </div></section>
+    <section id="tujuan" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Tujuan Pembelajaran</span>
+          <h2>Pancasila sebagai Kepribadian Bangsa</h2>
+          <p>
+            Ketiga jalur tetap mengarah pada kompetensi yang sama. Perbedaannya terletak pada kadar dukungan dan
+            kompleksitas kegiatan belajar.
+          </p>
+        </div>
 
-    <section id="jalur" class="section alt"><div class="container">
-      <div class="section-head"><span class="eyebrow">Peta Jalur Belajar</span><h2>Tiga Jalur, Satu Tujuan</h2><p>Jalur bersifat dinamis. Peserta didik dapat berpindah jalur setelah menyelesaikan checkpoint.</p></div>
-      <div class="path-grid">
-        <article class="path-card green"><span class="path-tag">Jalur Eksplorasi</span><h3>Aku Butuh Panduan</h3><p>Untuk peserta didik yang memerlukan contoh konkret, visual, dan bantuan bertahap.</p><ul><li>Video dan materi ringkas</li><li>Contoh perilaku nyata</li><li>Scaffolding bertahap</li><li>Latihan terarah</li></ul><button class="btn path-btn" data-open="eksplorasi">Buka Jalur</button></article>
-        <article class="path-card blue"><span class="path-tag">Jalur Penguatan</span><h3>Aku Siap Menganalisis</h3><p>Untuk peserta didik yang telah memahami konsep dasar dan siap menguatkan analisis.</p><ul><li>Kasus kontekstual</li><li>Diskusi dan analisis</li><li>LKPD digital</li><li>Umpan balik formatif</li></ul><button class="btn path-btn" data-open="penguatan">Buka Jalur</button></article>
-        <article class="path-card purple"><span class="path-tag">Jalur Tantangan</span><h3>Aku Siap Memecahkan Masalah</h3><p>Untuk peserta didik yang siap mengevaluasi, mengambil keputusan, dan merancang solusi.</p><ul><li>Studi kasus HOTS</li><li>Evaluasi alternatif tindakan</li><li>Argumentasi dan solusi</li><li>Produk mini kreatif</li></ul><button class="btn path-btn" data-open="tantangan">Buka Jalur</button></article>
+        <div class="cards three">
+          <article class="info-card">
+            <div class="icon">🔎</div>
+            <h3>TP 1 • C4</h3>
+            <p>Menganalisis hubungan perilaku dengan nilai Pancasila serta menjelaskan alasan keterkaitannya.</p>
+          </article>
+          <article class="info-card">
+            <div class="icon">⚖️</div>
+            <h3>TP 2 • C5</h3>
+            <p>Mengevaluasi alternatif penyelesaian berdasarkan martabat manusia, persatuan, dan musyawarah.</p>
+          </article>
+          <article class="info-card">
+            <div class="icon">🛠️</div>
+            <h3>TP 3 • C6</h3>
+            <p>Merancang solusi yang memuat tindakan, pelaksana, waktu, dan indikator keberhasilan.</p>
+          </article>
+        </div>
+
+        <div class="deep-learning-strip">
+          <span>🧭 Berkesadaran</span>
+          <span>🔗 Bermakna</span>
+          <span>✨ Menggembirakan</span>
+          <span>🧠 Memahami</span>
+          <span>🛠️ Mengaplikasi</span>
+          <span>💭 Merefleksi</span>
+        </div>
       </div>
-    </div></section>
+    </section>
 
-    <section id="ruangBelajar" class="section hidden"><div class="container"><button class="back-link" id="closePath">← Kembali ke peta jalur</button><div id="pathContent"></div></div></section>
+    <section id="identitas" class="section">
+      <div class="container identity-grid">
+        <div>
+          <span class="eyebrow">Langkah 1</span>
+          <h2>Identitas Belajar</h2>
+          <p class="muted">
+            Pilih rombel dan nomor peserta. PancaPath akan membuat kode otomatis, misalnya <strong>VIII-A-01</strong>.
+            Nama lengkap tidak dibutuhkan.
+          </p>
+          <div class="privacy-note">🔒 Kode peserta digunakan untuk rekap asesmen tanpa menampilkan nama lengkap.</div>
+        </div>
 
-    <section id="refleksi" class="section"><div class="container reflection-grid">
-      <div><span class="eyebrow">Refleksi Akhir</span><h2>Apa yang berubah setelah belajar?</h2><p>Refleksi membantu peserta didik menyadari proses berpikir, pengalaman belajar, dan tindakan nyata yang dapat dilakukan.</p></div>
-      <form class="reflection-card" id="reflectionForm">
-        <label>Pengetahuan baru yang saya peroleh:<textarea id="ref1" placeholder="Tuliskan satu hal penting yang kamu pahami..."></textarea></label>
-        <label>Hal yang masih menantang bagi saya:<textarea id="ref2" placeholder="Tuliskan bagian yang masih perlu kamu pelajari..."></textarea></label>
-        <label>Tindakan nyata yang akan saya lakukan:<textarea id="ref3" placeholder="Contoh: menghargai pendapat saat diskusi..."></textarea></label>
-        <button class="btn primary" type="submit">Simpan Refleksi</button><p class="save-note" id="saveNote"></p>
-      </form>
-    </div></section>
+        <div class="identity-card">
+          <label for="kelasSelect">Kelas / Rombel</label>
+          <select id="kelasSelect">
+            <option value="">Pilih rombel</option>
+            <option value="VIII A">VIII A</option>
+            <option value="VIII B">VIII B</option>
+            <option value="VIII C">VIII C</option>
+            <option value="VIII D">VIII D</option>
+            <option value="VIII E">VIII E</option>
+          </select>
 
-    <section class="section alt teacher-note"><div class="container"><div class="teacher-box"><div><span class="eyebrow">Catatan untuk Guru</span><h2>Media adaptif, bukan alat pelabelan.</h2></div><p>Hasil asesmen digunakan untuk menentukan dukungan awal. Peserta didik tidak disebut “rendah, sedang, tinggi”. Guru tetap memantau perkembangan dan dapat memindahkan peserta didik ke jalur berikutnya berdasarkan hasil checkpoint.</p></div></div></section>
+          <label for="nomorSelect">Nomor Peserta</label>
+          <select id="nomorSelect">
+            <option value="">Pilih nomor</option>
+          </select>
+
+          <div class="code-preview">Kode peserta: <strong id="kodePreview">—</strong></div>
+          <button class="btn primary wide" id="saveIdentityBtn" disabled>Simpan Identitas & Lanjut</button>
+          <p class="mini-note" id="identityNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="asesmen" class="section alt">
+      <div class="container assessment-wrap">
+        <div class="section-head narrow">
+          <span class="eyebrow">Langkah 2 • Asesmen Awal</span>
+          <h2>Cek Kesiapan Belajar</h2>
+          <p>
+            Tiga pertanyaan berikut diadaptasi dari asesmen diagnostik RPPM.
+            Hasilnya menentukan titik awal dukungan belajar, bukan label kemampuan.
+          </p>
+        </div>
+
+        <div id="assessmentLocked" class="locked-card">
+          <div class="lock-icon">🔐</div>
+          <h3>Isi identitas terlebih dahulu</h3>
+          <p>Setelah identitas disimpan, asesmen awal akan terbuka.</p>
+          <a class="btn secondary" href="#identitas">Ke Identitas</a>
+        </div>
+
+        <div class="assessment-card hidden" id="assessmentCard">
+          <div class="progress"><div id="progressBar"></div></div>
+          <div id="quizBox"></div>
+          <div class="quiz-actions">
+            <button class="btn secondary" id="prevBtn" disabled>Sebelumnya</button>
+            <button class="btn primary" id="nextBtn">Berikutnya</button>
+          </div>
+        </div>
+
+        <div id="resultBox" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <section id="jalur" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Langkah 3 • Jalur Adaptif</span>
+          <h2>Tiga jalur, satu tujuan pembelajaran</h2>
+          <p>
+            Jalur tidak menunjukkan pintar atau tidak pintar. Jalur hanya menentukan kadar dukungan belajar yang
+            diberikan pada titik awal.
+          </p>
+        </div>
+
+        <div class="path-grid">
+          <article class="path-card green">
+            <span class="path-tag">Skor awal 3–6</span>
+            <div class="path-visual-icon">🧭</div><h3>🟢 Eksplorasi</h3>
+            <p><strong>Kenali Nilainya</strong></p>
+            <ul>
+              <li>Ringkasan visual dan contoh konkret</li>
+              <li>Kalimat bantu / scaffolding</li>
+              <li>Latihan perilaku–nilai–alasan</li>
+              <li>Checkpoint 3 soal</li>
+            </ul>
+            <button class="btn path-btn" data-open="eksplorasi">Pratinjau Jalur</button>
+          </article>
+
+          <article class="path-card blue">
+            <span class="path-tag">Skor awal 7–9</span>
+            <div class="path-visual-icon">💡</div><h3>🔵 Penguatan</h3>
+            <p><strong>Analisis Masalahnya</strong></p>
+            <ul>
+              <li>Kasus budaya dan kehidupan remaja</li>
+              <li>Pertanyaan penuntun</li>
+              <li>Analisis perilaku, nilai, alasan, dampak</li>
+              <li>Checkpoint 3 soal</li>
+            </ul>
+            <button class="btn path-btn" data-open="penguatan">Pratinjau Jalur</button>
+          </article>
+
+          <article class="path-card purple">
+            <span class="path-tag">Skor awal 10–12</span>
+            <div class="path-visual-icon">🚀</div><h3>🟣 Tantangan</h3>
+            <p><strong>Rancang Solusinya</strong></p>
+            <ul>
+              <li>Kasus PBL lebih kompleks</li>
+              <li>Evaluasi dua alternatif solusi</li>
+              <li>Rencana tindakan C6</li>
+              <li>Checkpoint 3 soal</li>
+            </ul>
+            <button class="btn path-btn" data-open="tantangan">Pratinjau Jalur</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ruangBelajar" class="section alt hidden">
+      <div class="container">
+        <button class="back-link" id="closePath">← Kembali ke peta jalur</button>
+        <div id="pathContent"></div>
+      </div>
+    </section>
+
+    <section id="misiBersama" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Langkah 4 • Misi Bersama</span>
+          <h2>Bagaimana kelas kita menunjukkan kepribadian Pancasila?</h2>
+          <p>
+            Setelah checkpoint jalur selesai, semua peserta didik bertemu pada misi yang sama.
+            Fokusnya adalah menerapkan nilai Pancasila melalui tindakan nyata di kelas.
+          </p>
+        </div>
+
+        <div id="missionLocked" class="locked-card">
+          <div class="lock-icon">🔐</div>
+          <h3>Misi Bersama belum terbuka</h3>
+          <p>Selesaikan checkpoint pada jalur hasil asesmenmu terlebih dahulu.</p>
+        </div>
+
+        <div id="missionCard" class="mission-together hidden">
+          <div class="mission-callout">
+            <strong>🏁 Misi:</strong>
+            pilih satu perilaku yang penting untuk memperkuat kepribadian Pancasila di kelas,
+            lalu buat komitmen tindakan yang dapat diamati.
+          </div>
+
+          <div class="behavior-grid" id="behaviorGrid">
+            <button class="behavior-choice" data-value="Menghargai perbedaan">🤝<span>Menghargai perbedaan</span></button>
+            <button class="behavior-choice" data-value="Bermusyawarah">🗣️<span>Bermusyawarah</span></button>
+            <button class="behavior-choice" data-value="Membagi tugas secara adil">⚖️<span>Membagi tugas secara adil</span></button>
+            <button class="behavior-choice" data-value="Tidak merendahkan budaya">🎭<span>Tidak merendahkan budaya</span></button>
+            <button class="behavior-choice" data-value="Membantu teman">🙌<span>Membantu teman</span></button>
+          </div>
+
+          <label for="missionAction">Tindakan nyata yang akan saya lakukan</label>
+          <textarea id="missionAction" placeholder="Contoh: saat diskusi kelompok, saya akan memberi giliran bicara kepada setiap anggota..."></textarea>
+
+          <label for="missionIndicator">Tanda tindakan saya berhasil</label>
+          <textarea id="missionIndicator" placeholder="Contoh: setiap anggota menyampaikan minimal satu pendapat..."></textarea>
+
+          <button class="btn primary" id="saveMissionBtn">Simpan Misi Bersama</button>
+          <p class="save-note" id="missionNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="asesmenAkhir" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Langkah 5 • Asesmen Akhir</span>
+          <h2>Tiket Keluar Individu</h2>
+          <p>
+            Semua jalur mengerjakan kasus akhir yang sama untuk melihat transfer kemampuan C4, C5, dan C6.
+          </p>
+        </div>
+
+        <div id="finalLocked" class="locked-card">
+          <div class="lock-icon">🔐</div>
+          <h3>Asesmen akhir belum terbuka</h3>
+          <p>Simpan Misi Bersama terlebih dahulu.</p>
+        </div>
+
+        <form id="finalAssessmentForm" class="final-card hidden">
+          <div class="case-box">
+            <span class="case-label">Kasus Baru</span>
+            <p>
+              Saat kerja kelompok, seorang murid mengejek logat temannya. Ketua membagi semua tugas penting hanya
+              kepada teman dekatnya. Murid lain akhirnya enggan berkontribusi.
+            </p>
+          </div>
+
+          <label>
+            <strong>1. C4 — Analisis</strong>
+            Analisis satu perilaku dalam kasus. Tuliskan nilai sila yang terkait dan alasan keterkaitannya.
+            <textarea id="finalC4" required placeholder="Perilaku..., berkaitan dengan sila..., karena..."></textarea>
+          </label>
+
+          <label>
+            <strong>2. C5 — Evaluasi</strong>
+            Bandingkan dua pilihan: membiarkan pembagian tugas agar cepat selesai, atau membahas ulang pembagian
+            tugas bersama. Pilih yang lebih tepat dan berikan alasan berdasarkan Pancasila.
+            <textarea id="finalC5" required placeholder="Pilihan yang lebih tepat adalah... karena..."></textarea>
+          </label>
+
+          <label>
+            <strong>3. C6 — Rancang Solusi</strong>
+            Rancang satu tindakan untuk memperbaiki keadaan. Tuliskan pelaksana, waktu, dan tanda keberhasilannya.
+            <textarea id="finalC6" required placeholder="Tindakan... | Pelaksana... | Waktu... | Tanda keberhasilan..."></textarea>
+          </label>
+
+          <div class="rubric-hint">
+            <strong>Periksa jawabanmu:</strong>
+            apakah alasanmu berbasis nilai Pancasila? apakah solusi melibatkan pihak yang terdampak?
+            apakah indikator keberhasilan dapat diamati?
+          </div>
+
+          <button class="btn primary" type="submit">Simpan Draf Asesmen Akhir</button>
+          <p class="save-note" id="finalNote"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="refleksi" class="section">
+      <div class="container reflection-grid">
+        <div>
+          <span class="eyebrow">Langkah 6 • Refleksi</span>
+          <h2>Apa yang berubah setelah belajar?</h2>
+          <p class="muted">
+            Refleksi membantu peserta didik menyadari pemahaman, tindakan, dan bantuan yang masih diperlukan.
+            Pada versi berikutnya bagian ini dapat dihubungkan ke Google Form Refleksi Akhir.
+          </p>
+        </div>
+
+        <form class="reflection-card" id="reflectionForm">
+          <label>
+            Hal penting yang saya pahami hari ini:
+            <textarea id="ref1" placeholder="Tuliskan satu pemahaman penting..."></textarea>
+          </label>
+          <label>
+            Perilaku Pancasila yang akan saya terapkan:
+            <textarea id="ref2" placeholder="Tuliskan satu perilaku nyata..."></textarea>
+          </label>
+          <label>
+            Bantuan pembelajaran yang masih saya perlukan:
+            <textarea id="ref3" placeholder="Tuliskan jika masih ada bagian yang memerlukan bantuan..."></textarea>
+          </label>
+
+          <label>
+            Seberapa membantu PancaPath dalam memahami materi?
+            <select id="helpfulness" required>
+              <option value="">Pilih penilaian</option>
+              <option value="1">1 — Belum membantu</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 — Sangat membantu</option>
+            </select>
+          </label>
+
+          <label>
+            Saran untuk PancaPath <span style="font-weight:500;color:#667085">(opsional)</span>:
+            <textarea id="suggestion" placeholder="Tuliskan saran jika ada..."></textarea>
+          </label>
+
+          <button class="btn primary" type="submit">Simpan Refleksi</button>
+          <p class="save-note" id="saveNote"></p>
+
+          <div id="formBAction" class="hidden" style="margin-top:18px;padding-top:18px;border-top:1px solid #e5e9f0">
+            <button class="btn primary wide" type="button" id="sendFormBBtn">
+              Kirim Hasil Akhir ke Google Form B
+            </button>
+            <p class="mini-note" style="color:#667085">
+              Google Form B akan terbuka dengan identitas, asesmen akhir, Misi Bersama, dan refleksi sudah terisi.
+              Periksa data lalu klik <strong>Kirim</strong>.
+            </p>
+            <button class="btn secondary wide hidden" type="button" id="confirmFormBBtn" style="margin-top:10px">
+              ✓ Saya Sudah Mengirim Form B
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="selesai" class="section completion-section">
+      <div class="container">
+        <div id="completionLocked" class="locked-card">
+          <div class="lock-icon">🏁</div>
+          <h3>Perjalanan belum ditandai selesai</h3>
+          <p>
+            Setelah mengirim Google Form B, kembali ke tab PancaPath lalu klik
+            <strong>“Saya Sudah Mengirim Form B”</strong>.
+          </p>
+        </div>
+
+        <div id="completionCard" class="completion-card hidden">
+          <div class="completion-badge">🏅</div>
+          <span class="eyebrow">Perjalanan Selesai</span>
+          <h2>Selamat, Pancasila Pathfinder!</h2>
+          <p class="completion-lead">
+            Kamu telah menyelesaikan asesmen awal, jalur adaptif, checkpoint, Misi Bersama,
+            asesmen akhir, dan refleksi.
+          </p>
+
+          <div class="badge-card">
+            <div>
+              <small>Kode Peserta</small>
+              <strong id="badgeCode">—</strong>
+            </div>
+            <div>
+              <small>Jalur Belajar</small>
+              <strong id="badgeRoute">—</strong>
+            </div>
+            <div>
+              <small>Status</small>
+              <strong>SELESAI</strong>
+            </div>
+          </div>
+
+          <div class="completion-message">
+            <strong>Pesan akhir:</strong>
+            nilai Pancasila tidak berhenti pada jawaban di layar. Tunjukkan melalui cara menghargai,
+            bermusyawarah, bekerja sama, dan bertindak adil dalam kehidupan sehari-hari.
+          </div>
+
+          <div class="completion-actions">
+            <button class="btn secondary" id="backHomeBtn">Kembali ke Beranda</button>
+            <button class="btn primary" id="newParticipantBtn">Mulai Peserta Baru</button>
+            <button class="btn danger" id="finishExitBtn">Selesai & Keluar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt teacher-note">
+      <div class="container teacher-box">
+        <div>
+          <span class="eyebrow">Catatan Desain Adaptif</span>
+          <h2>Dukungan berbeda, tujuan tetap sama.</h2>
+        </div>
+        <p>
+          PancaPath tidak mengelompokkan peserta didik secara permanen. Hasil asesmen awal menentukan dukungan awal.
+          Setelah checkpoint, semua peserta didik melanjutkan ke Misi Bersama dan asesmen akhir yang sama.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <footer><div class="container footer-wrap"><div><strong>PancaPath</strong><p>Peta Belajar Adaptif Pendidikan Pancasila</p></div><div class="footer-note">Dikembangkan sebagai karya inovasi pembelajaran berbasis asesmen awal dan pembelajaran mendalam.</div></div></footer>
+  <footer>
+    <div class="container footer-wrap">
+      <div>
+        <strong>PancaPath v7 • Final</strong>
+        <p>Karya inovasi pembelajaran adaptif • Pendidikan Pancasila Kelas VIII</p>
+      </div>
+      <div class="footer-note">
+        Materi dikembangkan dari Buku Pendidikan Pancasila dan Kewarganegaraan SMP Kelas VIII, Bab I,
+        serta RPPM “Pancasila sebagai Kepribadian Bangsa”.
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
