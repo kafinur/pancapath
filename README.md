@@ -1,26 +1,25 @@
-# PancaPath v9.2 — Finalisasi Alur
+# PancaPath v11 — Revisi Bahasa + Konteks Madiun + PancaQuest Adventure
 
-Versi v9.2 memperbaiki konsistensi penomoran dan narasi tahapan setelah PancaQuest ditambahkan.
+Versi ini mempertahankan alur PancaPath dan PancaQuest Adventure, lalu memperbaiki hasil umpan balik siswa:
 
-## Urutan final
-1. Identitas Belajar
-2. Asesmen Awal
-3. Jalur Belajar Adaptif
-4. PancaQuest
-5. Misi Bersama
-6. Asesmen Akhir
-7. Refleksi
-8. Perjalanan Selesai
+- Bahasa dibuat lebih singkat dan langsung.
+- Petunjuk interaksi dibuat lebih jelas: E / Space / AKSI.
+- Visual diberi konteks lokal Madiun melalui ilustrasi pencak silat, pecel, batik, dan lingkungan belajar.
+- PancaQuest tetap memiliki 4 level, audio interaksi + musik latar, kontrol WASD/Arrow dan joystick HP.
+- Pertanyaan dan pilihan jawaban diacak setiap sesi.
+- Hasil PancaQuest tetap disimpan ke localStorage dan dibaca oleh PancaPath.
+- Google Form B dan spreadsheet lama tetap dapat digunakan.
 
-## Yang diperbaiki
-- Label PancaQuest menjadi **Langkah 4**.
-- Misi Bersama menjadi **Langkah 5**.
-- Asesmen Akhir menjadi **Langkah 6**.
-- Refleksi menjadi **Langkah 7**.
-- Perjalanan Selesai menjadi **Langkah 8**.
-- Narasi Misi Bersama diperbarui agar menyebut checkpoint dan PancaQuest.
-- Narasi penyelesaian akhir juga menyebut PancaQuest.
-- Form A, Form B, Sumber Belajar, PancaQuest, dan semua integrasi data tidak diubah.
+## Upload ke GitHub Pages
 
-## Alur
-Beranda → Tujuan → Sumber Belajar → Identitas → Asesmen Awal → Jalur Adaptif → Checkpoint → PancaQuest → Misi Bersama → Asesmen Akhir → Refleksi → Form B → Selesai.
+1. Buat/buka repository GitHub.
+2. Upload seluruh isi folder ini, termasuk folder `assets`, `game`, dan `resources`.
+3. Pastikan file utama bernama `index.html` berada di root repository.
+4. Aktifkan GitHub Pages dari **Settings → Pages → Deploy from branch**.
+5. Buka alamat Pages yang diberikan GitHub.
+
+## Penting tentang Spreadsheet
+
+Tidak perlu mengganti spreadsheet yang sudah ada. PancaQuest menggunakan data hasil yang sudah disiapkan di PancaPath, terutama **Skor PancaQuest** dan **Badge PancaQuest** pada Google Form B. Jika nanti ingin menyimpan detail setiap level secara terpisah, barulah dapat ditambahkan sheet/kolom baru.
+
+Ilustrasi Madiun di versi ini adalah visual kontekstual buatan AI untuk kebutuhan media pembelajaran, bukan foto dokumentasi lokasi tertentu.

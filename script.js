@@ -1,6 +1,6 @@
 
 // =============================================================
-// PANCAPATH v9.2 - PETA BELAJAR ADAPTIF
+// PANCAPATH v10 - PETA BELAJAR ADAPTIF
 // =============================================================
 
 // Google Form A - Asesmen Awal (sudah diuji pengguna)
@@ -324,7 +324,7 @@ function openPrefilledForm(score, jalur) {
   params.append(FORM_ENTRIES.kode, student.kode);
   params.append(FORM_ENTRIES.skor, String(score));
   params.append(FORM_ENTRIES.jalur, jalur);
-  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v9.2");
+  params.append(FORM_ENTRIES.catatan, "Hasil asesmen dikirim melalui PancaPath v10");
   const url = `${GOOGLE_FORM_URL}?usp=pp_url&${params.toString()}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -788,10 +788,33 @@ function questRouteMeta(routeId) {
 
 function unlockQuest() {
   $("questLocked")?.classList.add("hidden");
+  $("adventureLaunch")?.classList.remove("hidden");
+  $("questArena")?.classList.add("hidden");
+  prepareQuestPlayer();
+}
+
+function startClassicQuest() {
+  $("adventureLaunch")?.classList.add("hidden");
   $("questArena")?.classList.remove("hidden");
   prepareQuestPlayer();
   renderQuestMission();
 }
+
+function startAdventureQuest() {
+  const savedStudent = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
+  const savedResult = JSON.parse(localStorage.getItem("pancapath_result") || "{}");
+  const route = savedResult.route || getQuestRoute();
+  const params = new URLSearchParams({
+    name: savedStudent.nama || "PancaPath Explorer",
+    code: savedStudent.kode || "",
+    route: route || "eksplorasi",
+    return: "../index.html#pancaQuest"
+  });
+  window.location.href = `game/index.html?${params.toString()}`;
+}
+
+$("startAdventureBtn")?.addEventListener("click", startAdventureQuest);
+$("startClassicQuestBtn")?.addEventListener("click", startClassicQuest);
 
 function prepareQuestPlayer() {
   const savedStudent = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
@@ -999,6 +1022,7 @@ function completeQuest() {
   updateJourneyProgress();
 
   $("questArena")?.classList.add("hidden");
+  $("adventureLaunch")?.classList.add("hidden");
   $("questLocked")?.classList.add("hidden");
   $("questComplete")?.classList.remove("hidden");
   if ($("questCompleteName")) $("questCompleteName").textContent = savedStudent.nama || "Pathfinder";
@@ -1197,6 +1221,34 @@ $("finishExitBtn").addEventListener("click", () => {
 });
 
 // =============================================================
+// PANCAQUEST ADVENTURE RETURN BRIDGE
+// Mendukung GitHub Pages dan pengujian lokal via query parameter.
+// =============================================================
+function importAdventureReturn() {
+  const qs = new URLSearchParams(window.location.search);
+  if (!qs.has("quest_xp")) return;
+  const xp = Math.max(0, Math.min(100, Number(qs.get("quest_xp")) || 0));
+  const badge = qs.get("quest_badge") || getQuestBadge(xp);
+  const route = qs.get("quest_route") || getQuestRoute();
+  const result = {
+    completed: true,
+    xp,
+    badge,
+    route,
+    source: "adventure",
+    completed_at: new Date().toISOString()
+  };
+  localStorage.setItem("pancapath_quest", JSON.stringify(result));
+  const actionRaw = qs.get("quest_action");
+  if (actionRaw) {
+    try { localStorage.setItem("pancapath_quest_action", actionRaw); } catch (e) {}
+  }
+  qs.delete("quest_xp"); qs.delete("quest_badge"); qs.delete("quest_route"); qs.delete("quest_action");
+  const clean = window.location.pathname + (qs.toString() ? `?${qs}` : "") + "#pancaQuest";
+  try { history.replaceState({}, "", clean); } catch (e) {}
+}
+
+// =============================================================
 // RESTORE STATE
 // =============================================================
 function restoreState() {
@@ -1238,6 +1290,7 @@ function restoreState() {
       if (q.completed) {
         const savedStudent2 = JSON.parse(localStorage.getItem("pancapath_student") || "{}");
         $("questLocked")?.classList.add("hidden");
+        $("adventureLaunch")?.classList.add("hidden");
         $("questArena")?.classList.add("hidden");
         $("questComplete")?.classList.remove("hidden");
         if ($("questCompleteName")) $("questCompleteName").textContent = savedStudent2.nama || "Pathfinder";
@@ -1306,6 +1359,7 @@ document.querySelectorAll(".nav a").forEach(a => {
 });
 
 populateNumbers();
+importAdventureReturn();
 restoreState();
 renderQuestion();
 updateJourneyProgress();
